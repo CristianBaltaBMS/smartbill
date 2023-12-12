@@ -8,7 +8,6 @@ trebuie să poată:
 * genera "următorul" număr din secvența Fibonacci asociată lui
 * cere trecerea înapoi cu o poziție în secvența sa de numere
 * lista toate numerele din secvența sa generate pana la momentul curent
-*
 
 Ex:
 
