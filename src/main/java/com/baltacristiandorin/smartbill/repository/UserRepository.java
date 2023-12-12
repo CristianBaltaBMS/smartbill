@@ -47,4 +47,9 @@ public class UserRepository {
 
         usersDao.deleteById(uuid);
     }
+
+    public void deleteUserByName(String name) {
+
+        dslContext.deleteFrom(USERS).where(USERS.USER_NAME.eq(name)).execute();
+    }
 }
