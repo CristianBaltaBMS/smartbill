@@ -2,8 +2,7 @@
 !**/src/main/**/target/
 !**/src/test/**/target/
 target/*
-!target/generated-sources/
-!target/generated-test-sources/
+!target/generated-sources/jooq/com/baltacristiandorin/jooq/public_/
 
 ### STS ###
 .apt_generated
