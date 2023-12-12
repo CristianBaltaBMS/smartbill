@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigInteger;
 import java.util.UUID;
 
 @RestController
@@ -28,10 +29,28 @@ public class FibonacciController {
         return new ResponseEntity<>(fibonacciService.getFibonacciById(id), HttpStatus.OK);
     }
 
+    @GetMapping(path = "/user/name/{name}")
+    public ResponseEntity<Fibonacci> getFibonacciById(@PathVariable String name) {
+
+        return new ResponseEntity<>(fibonacciService.getFibonacciByUserName(name), HttpStatus.OK);
+    }
+
     @GetMapping(path = "/user/{id}")
     public ResponseEntity<Fibonacci> getFibonacciByUserId(@PathVariable UUID id) {
 
         return new ResponseEntity<>(fibonacciService.getFibonacciByUserId(id), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/list/user/{id}")
+    public ResponseEntity<String> getFibonacciList(@PathVariable UUID id) {
+
+        return new ResponseEntity<>(fibonacciService.getFibonacciList(id), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/list/user/name/{name}")
+    public ResponseEntity<String> getFibonacciList(@PathVariable String name) {
+
+        return new ResponseEntity<>(fibonacciService.getFibonacciList(name), HttpStatus.OK);
     }
 
     @PostMapping
@@ -39,6 +58,19 @@ public class FibonacciController {
 
         fibonacciService.upsertFibonacci(fibonacci);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @PostMapping(path = "/increment/user/{id}")
+    public ResponseEntity<BigInteger> incrementFibonacci(@PathVariable UUID id) {
+
+        return new ResponseEntity<>(fibonacciService.incrementFibonacci(id), HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/decrement/user/{id}")
+    public ResponseEntity<HttpStatus> decrementFibonacci(@PathVariable UUID id) {
+
+        fibonacciService.decrementFibonacci(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/{id}")
