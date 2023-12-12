@@ -21,9 +21,9 @@ public class UserController {
     }
 
     @GetMapping(path = "/user/{id}")
-    public ResponseEntity<Users> getUser(@PathVariable UUID uuid) {
+    public ResponseEntity<Users> getUser(@PathVariable UUID id) {
 
-        return new ResponseEntity<>(userService.getUser(uuid), HttpStatus.OK);
+        return new ResponseEntity<>(userService.getUser(id), HttpStatus.OK);
     }
 
     @GetMapping(path = "/user/name/{name}")
@@ -40,9 +40,9 @@ public class UserController {
     }
 
     @DeleteMapping(path = "/user/{id}")
-    public ResponseEntity<Users> deleteUser(@PathVariable UUID uuid) {
+    public ResponseEntity<Users> deleteUser(@PathVariable UUID id) {
 
-        userService.deleteUser(uuid);
+        userService.deleteUser(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

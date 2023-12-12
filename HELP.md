@@ -18,3 +18,9 @@ Ex:
 * client2 -> apel generare 3 -> rezultat: 1
 * client2 -> apel generare 4 -> rezultat: 2
 * client1 -> apel listare valori generate -> rezultat: 1, 1, 2, 3
+
+### Manual testing
+
+For manual testing use swagger or the provided Postman collection.
+
+* http://localhost:8080/swagger-ui/index.html#/

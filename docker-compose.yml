@@ -1,6 +1,6 @@
 services:
   app:
-    image: 'home-assignment:latest'
+    image: 'smartbill:latest'
     build:
       context: .
     container_name: app

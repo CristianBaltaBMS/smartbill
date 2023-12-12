@@ -23,15 +23,15 @@ public class FibonacciController {
 
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<Fibonacci> getFibonacciById(@PathVariable UUID uuid) {
+    public ResponseEntity<Fibonacci> getFibonacciById(@PathVariable UUID id) {
 
-        return new ResponseEntity<>(fibonacciService.getFibonacciById(uuid), HttpStatus.OK);
+        return new ResponseEntity<>(fibonacciService.getFibonacciById(id), HttpStatus.OK);
     }
 
     @GetMapping(path = "/user/{id}")
-    public ResponseEntity<Fibonacci> getFibonacciByUserId(@PathVariable UUID uuid) {
+    public ResponseEntity<Fibonacci> getFibonacciByUserId(@PathVariable UUID id) {
 
-        return new ResponseEntity<>(fibonacciService.getFibonacciByUserId(uuid), HttpStatus.OK);
+        return new ResponseEntity<>(fibonacciService.getFibonacciByUserId(id), HttpStatus.OK);
     }
 
     @PostMapping
@@ -42,16 +42,16 @@ public class FibonacciController {
     }
 
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<Users> deleteFibonacciById(@PathVariable UUID uuid) {
+    public ResponseEntity<Users> deleteFibonacciById(@PathVariable UUID id) {
 
-        fibonacciService.deleteFibonacciById(uuid);
+        fibonacciService.deleteFibonacciById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/user/{id}")
-    public ResponseEntity<Users> deleteFibonacciByUserId(@PathVariable UUID uuid) {
+    public ResponseEntity<Users> deleteFibonacciByUserId(@PathVariable UUID id) {
 
-        fibonacciService.deleteFibonacciByUserId(uuid);
+        fibonacciService.deleteFibonacciByUserId(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

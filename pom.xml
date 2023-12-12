@@ -15,6 +15,9 @@
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>17</java.version>
+        <db.Url>jdbc:postgresql://localhost:5432/postgres</db.Url>
+        <db.User>postgres</db.User>
+        <db.Password>postgres</db.Password>
     </properties>
     <dependencies>
         <dependency>
@@ -47,6 +50,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>
             <version>3.2.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.3.0</version>
         </dependency>
 
         <dependency>
@@ -91,6 +100,37 @@
                     </excludes>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <executions>
+                    <execution>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>set-system-properties</goal>
+                        </goals>
+                        <configuration>
+                            <properties>
+                                <property>
+                                    <name>spring.datasource.url</name>
+                                    <value>${env.SPRING_DATASOURCE_URL}</value>
+                                </property>
+                                <property>
+                                    <name>spring.datasource.url</name>
+                                    <value>${env.SPRING_DATASOURCE_USERNAME}</value>
+                                </property>
+                                <property>
+                                    <name>spring.datasource.url</name>
+                                    <value>${env.SPRING_DATASOURCE_PASSWORD}</value>
+                                </property>
+                            </properties>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>org.jooq</groupId>
                 <artifactId>jooq-codegen-maven</artifactId>
@@ -106,9 +146,9 @@
                     <!-- Database configuration -->
                     <jdbc>
                         <driver>org.postgresql.Driver</driver>
-                        <url>jdbc:postgresql://localhost:5432/postgres</url>
-                        <user>postgres</user>
-                        <password>postgres</password>
+                        <url>${db.Url}</url>
+                        <user>${db.User}</user>
+                        <password>${db.Password}</password>
                     </jdbc>
                     <generator>
                         <database>
