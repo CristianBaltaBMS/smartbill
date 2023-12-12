@@ -23,12 +23,12 @@ public class UserRepository {
         this.dslContext = dslContext;
     }
 
-    public Users getUserById(UUID uuid) {
+    public Users getUser(UUID uuid) {
 
         return usersDao.findById(uuid);
     }
 
-    public Users getUserByName(String name) {
+    public Users getUser(String name) {
 
         return dslContext.selectFrom(USERS)
                 .where(USERS.USER_NAME.eq(name))

@@ -19,12 +19,12 @@ public class UserService {
 
     public Users getUser(UUID uuid) {
 
-        return userRepository.getUserById(uuid);
+        return userRepository.getUser(uuid);
     }
 
     public Users getUser(String name) {
 
-        return userRepository.getUserByName(name);
+        return userRepository.getUser(name);
     }
 
     public void upsert(Users users) {
