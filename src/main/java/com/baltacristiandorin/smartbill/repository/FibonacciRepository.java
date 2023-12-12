@@ -20,8 +20,8 @@ public class FibonacciRepository {
     private final FibonacciDao fibonacciDao;
     private final DSLContext dslContext;
 
-    public FibonacciRepository(DSLContext dslContext) {
-        this.fibonacciDao = new FibonacciDao(dslContext.configuration());
+    public FibonacciRepository(FibonacciDao fibonacciDao, DSLContext dslContext) {
+        this.fibonacciDao = fibonacciDao;
         this.dslContext = dslContext;
     }
 

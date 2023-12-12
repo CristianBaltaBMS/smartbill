@@ -12,7 +12,7 @@ public class OpenApiConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("Example API")
+                        .title("SmartBill API")
                         .version("1.0.0")
                         .description("This is a sample Spring Boot RESTful service using springdoc-openapi and OpenAPI 3."));
     }

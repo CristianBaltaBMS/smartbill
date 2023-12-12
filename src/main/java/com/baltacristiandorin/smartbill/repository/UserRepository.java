@@ -18,8 +18,8 @@ public class UserRepository {
     private final UsersDao usersDao;
     private final DSLContext dslContext;
 
-    public UserRepository(DSLContext dslContext) {
-        this.usersDao = new UsersDao(dslContext.configuration());
+    public UserRepository(UsersDao usersDao, DSLContext dslContext) {
+        this.usersDao = usersDao;
         this.dslContext = dslContext;
     }
 
