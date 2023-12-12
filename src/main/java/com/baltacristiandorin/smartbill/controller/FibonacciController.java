@@ -30,7 +30,7 @@ public class FibonacciController {
     }
 
     @GetMapping(path = "/user/name/{name}")
-    public ResponseEntity<Fibonacci> getFibonacciById(@PathVariable String name) {
+    public ResponseEntity<Fibonacci> getFibonacciByUserName(@PathVariable String name) {
 
         return new ResponseEntity<>(fibonacciService.getFibonacciByUserName(name), HttpStatus.OK);
     }

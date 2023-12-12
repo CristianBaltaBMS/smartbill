@@ -2,8 +2,10 @@ package com.baltacristiandorin.smartbill.repository;
 
 import com.baltacristiandorin.jooq.public_.tables.daos.FibonacciDao;
 import com.baltacristiandorin.jooq.public_.tables.pojos.Fibonacci;
+import com.baltacristiandorin.smartbill.exceptions.SmartBillBadRequestException;
 import lombok.extern.log4j.Log4j2;
 import org.jooq.DSLContext;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
@@ -35,14 +37,18 @@ public class FibonacciRepository {
                 .fetchOneInto(Fibonacci.class);
     }
 
-    public void upsertFibonacci(Fibonacci fibonacci) {
+    public void upsertFibonacci(Fibonacci fibonacci) throws SmartBillBadRequestException {
 
-        dslContext.insertInto(FIBONACCI, FIBONACCI.USER_ID, FIBONACCI.VALUES)
-                .values(fibonacci.getUserId(), fibonacci.getValues())
-                .onConflict(field(FIBONACCI.USER_ID))
-                .doUpdate()
-                .set(field(FIBONACCI.VALUES), fibonacci.getValues())
-                .execute();
+        try {
+            dslContext.insertInto(FIBONACCI, FIBONACCI.USER_ID, FIBONACCI.VALUES)
+                    .values(fibonacci.getUserId(), fibonacci.getValues())
+                    .onConflict(field(FIBONACCI.USER_ID))
+                    .doUpdate()
+                    .set(field(FIBONACCI.VALUES), fibonacci.getValues())
+                    .execute();
+        } catch (DataIntegrityViolationException dataIntegrityViolationException) {
+            throw new SmartBillBadRequestException(dataIntegrityViolationException.getMessage());
+        }
     }
 
     public void deleteFibonacciById(UUID uuid) {

@@ -1,6 +1,7 @@
 package com.baltacristiandorin.smartbill.service;
 
 import com.baltacristiandorin.jooq.public_.tables.pojos.Users;
+import com.baltacristiandorin.smartbill.exceptions.SmartBillNotFoundException;
 import com.baltacristiandorin.smartbill.repository.UserRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -17,14 +18,26 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public Users getUser(UUID uuid) {
+    public Users getUser(UUID uuid) throws SmartBillNotFoundException {
 
-        return userRepository.getUser(uuid);
+        Users user = userRepository.getUser(uuid);
+
+        if (user != null) {
+            return user;
+        } else {
+            throw new SmartBillNotFoundException("The value for %s is not in the database!".formatted(uuid));
+        }
     }
 
-    public Users getUser(String name) {
+    public Users getUser(String name) throws SmartBillNotFoundException {
 
-        return userRepository.getUser(name);
+        Users user = userRepository.getUser(name);
+
+        if (user != null) {
+            return user;
+        } else {
+            throw new SmartBillNotFoundException("The value for %s is not in the database!".formatted(name));
+        }
     }
 
     public void upsert(Users users) {
